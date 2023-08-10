@@ -14,8 +14,21 @@ pub fn fast_exp(base: i64, pow: i64) -> i64 {
 }
 
 // Perform fast exponentiation in a modulus.
-pub fn fast_exp_mod(num: i64, pow: i64, modulus: i64) -> i64 {
-    1
+pub fn fast_exp_mod(base: i64, pow: i64, modulus: i64) -> i64 {
+    let mut multiplier: i64 = base;
+    let mut tmp_pow: i64 = pow;
+    let mut result = 1;
+
+    while tmp_pow != 0 {
+        if (tmp_pow & 1) == 1 {
+            result *= multiplier;
+            result %= modulus;
+        }
+        multiplier *= multiplier;
+        multiplier %= modulus;
+        tmp_pow >>= 1;
+    }
+    result
 }
 
 #[cfg(test)]
@@ -84,5 +97,42 @@ mod tests {
             let result = fast_exp(3, i);
             assert_eq!(result, 3i64.pow(i as u32));
         }
+    }
+
+
+    #[test]
+    fn fast_exp_mod_8_1_10() {
+        let result = fast_exp_mod(8, 1, 10);
+        assert_eq!(result, 8);
+    }
+
+    #[test]
+    fn fast_exp_mod_8_2_10() {
+        let result = fast_exp_mod(8, 2, 10);
+        assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn fast_exp_mod_8_3_10() {
+        let result = fast_exp_mod(8, 3, 10);
+        assert_eq!(result, 2);
+    }
+
+    #[test]
+    fn fast_exp_mod_8_4_10() {
+        let result = fast_exp_mod(8, 4, 10);
+        assert_eq!(result, 6);
+    }
+
+    #[test]
+    fn fast_exp_mod_8_5_10() {
+        let result = fast_exp_mod(8, 5, 10);
+        assert_eq!(result, 8);
+    }
+
+    #[test]
+    fn fast_exp_mod_8_6_10() {
+        let result = fast_exp_mod(8, 6, 10);
+        assert_eq!(result, 4);
     }
 }
