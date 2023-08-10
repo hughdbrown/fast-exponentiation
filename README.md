@@ -27,6 +27,4 @@ test tests::fast_exp_mod_8_4_10 ... ok
 test tests::fast_exp_mod_8_6_10 ... ok
 
 ...
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
