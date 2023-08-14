@@ -135,4 +135,11 @@ mod tests {
         let result = fast_exp_mod(8, 6, 10);
         assert_eq!(result, 4);
     }
+
+    #[test]
+    fn fast_exp_mod_1234567_1652899_17276041() {
+        let result = fast_exp_mod(1234567, 1652899, 17276041);
+        assert_eq!(result, 9062798);
+    }
+
 }
