@@ -1,6 +1,6 @@
-pub fn fast_exp(base: i64, pow: i64) -> i64 {
-    let mut multiplier: i64 = base;
-    let mut tmp_pow: i64 = pow;
+pub fn fast_exp(base: u64, pow: u64) -> u64 {
+    let mut multiplier: u64 = base;
+    let mut tmp_pow: u64 = pow;
     let mut result = 1;
 
     while tmp_pow != 0 {
@@ -14,9 +14,9 @@ pub fn fast_exp(base: i64, pow: i64) -> i64 {
 }
 
 // Perform fast exponentiation in a modulus.
-pub fn fast_exp_mod(base: i64, pow: i64, modulus: i64) -> i64 {
-    let mut multiplier: i64 = base;
-    let mut tmp_pow: i64 = pow;
+pub fn fast_exp_mod(base: u64, pow: u64, modulus: u64) -> u64 {
+    let mut multiplier: u64 = base;
+    let mut tmp_pow: u64 = pow;
     let mut result = 1;
 
     while tmp_pow != 0 {
@@ -87,7 +87,7 @@ mod tests {
     fn fast_exp_general2() {
         for i in 1..32 {
             let result = fast_exp(2, i);
-            assert_eq!(result, 1i64 << i);
+            assert_eq!(result, 1u64 << i);
         }
     }
 
@@ -95,7 +95,7 @@ mod tests {
     fn fast_exp_general3() {
         for i in 1..20 {
             let result = fast_exp(3, i);
-            assert_eq!(result, 3i64.pow(i as u32));
+            assert_eq!(result, 3u64.pow(i as u32));
         }
     }
 
